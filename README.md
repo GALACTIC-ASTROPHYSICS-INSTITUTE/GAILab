@@ -1,3 +1,89 @@
+**Repository Overview**
+
+The GAILab repository, hosted by the GALACTIC-ASTROPHYSICS-INSTITUTE, is designed as a node for decentralized computation, bridging both on-chain and off-chain processes. It utilizes the Truffle framework and integrates with Chainlink services.
+
+**Key Features**
+
+- **Decentralized Computation**: Facilitates both on-chain and off-chain computations.
+- **Chainlink Integration**: Implements features such as Price Feeds, VRF (Verifiable Random Function), and Keepers.
+- **Truffle Framework**: Utilizes Truffle for smart contract development and testing.
+
+**Installation Requirements**
+
+- **Git**: Ensure Git is installed. Verify with:
+  ```bash
+  git --version
+  ```
+
+- **Node.js**: Ensure Node.js is installed. Verify with:
+  ```bash
+  node --version
+  ```
+
+- **Yarn**: Recommended over npm. Verify with:
+  ```bash
+  yarn --version
+  ```
+
+**Quickstart Guide**
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/smartcontractkit/truffle-starter-kit/
+   cd truffle-starter-kit
+   ```
+
+2. **Install Dependencies**:
+   ```bash
+   yarn
+   ```
+
+3. **Run Tests**:
+   ```bash
+   truffle test
+   ```
+
+**Deployment Instructions**
+
+- **Deploy Contracts**:
+  Modify `truffle-config.js` to specify networks. Deploy with:
+  ```bash
+  truffle migrate --network <NETWORK>
+  ```
+
+- **Local Network Setup**:
+  Start a local blockchain using Ganache:
+  ```bash
+  ganache -d
+  ```
+
+**Environment Configuration**
+
+- Create a `.env` file for sensitive information:
+  ```plaintext
+  SEPOLIA_RPC_URL='https://sepolia.infura.io/v3/asdfasdfasdfasdf'
+  PRIVATE_KEY='abcdef'
+  ```
+
+- **Important**: Never expose your private keys in public repositories.
+
+**Testing and Interacting with Contracts**
+
+- **Unit Tests**: Run local unit tests using:
+  ```bash
+  truffle test
+  ```
+
+- **Interacting with Deployed Contracts**: Use Truffle console or scripts to interact with deployed contracts.
+
+**Contributing**
+
+Contributions are welcome! Open a pull request or issue for any improvements or suggestions.
+
+**License**
+
+This project is licensed under the MIT License.
+
 <br/>
 <p align="center">
 <a href="https://chain.link" target="_blank">
