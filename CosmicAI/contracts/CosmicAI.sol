@@ -3,8 +3,11 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract CosmicAI is Ownable {
+    using Strings for uint256;
+
     // Struct to hold astronomical data
     struct AstronomicalData {
         uint256 id;
@@ -12,6 +15,7 @@ contract CosmicAI is Ownable {
         uint256 timestamp;
         address uploader;
         bool analyzed;
+        string analysisResult; // Store the result of the analysis
     }
 
     // Mapping to store astronomical data
@@ -32,21 +36,24 @@ contract CosmicAI is Ownable {
 
     // Function to upload astronomical data
     function uploadData(string memory _dataHash) external {
+        require(bytes(_dataHash).length > 0, "Data hash cannot be empty");
+        
         dataCount++;
-        dataRecords[dataCount] = AstronomicalData(dataCount, _dataHash, block.timestamp, msg.sender, false);
+        dataRecords[dataCount] = AstronomicalData(dataCount, _dataHash, block.timestamp, msg.sender, false, "");
         emit DataUploaded(dataCount, msg.sender, _dataHash);
     }
 
-    // Function to analyze data (mockup for AI analysis)
-    function analyzeData(uint256 _id) external onlyOwner notAnalyzed(_id) {
-        // Here you would integrate with an off-chain AI service to analyze the data
-        // For demonstration, we will just return a mock result
-        string memory analysisResult = "Analysis complete for data ID: ";
+    // Function to analyze data (integrated with off-chain AI service)
+    function analyzeData(uint256 _id, string memory _analysisResult) external onlyOwner notAnalyzed(_id) {
+        require(bytes(_analysisResult).length > 0, "Analysis result cannot be empty");
+
+        // Store the analysis result
+        dataRecords[_id].analysisResult = _analysisResult;
         
         // Mark data as analyzed
         dataRecords[_id].analyzed = true;
 
-        emit DataAnalyzed(_id, analysisResult);
+        emit DataAnalyzed(_id, _analysisResult);
     }
 
     // Function to retrieve data details
@@ -56,9 +63,20 @@ contract CosmicAI is Ownable {
 
     // Function to withdraw funds (if any) from the contract
     function withdrawFunds(address payable _to) external onlyOwner {
+        require(address(this).balance > 0, "No funds to withdraw");
         _to.transfer(address(this).balance);
+    }
+
+    // Function to get the total number of data records
+    function getTotalDataRecords() external view returns (uint256) {
+        return dataCount;
     }
 
     // Fallback function to accept Ether
     receive() external payable {}
+
+    // Function to get the contract balance
+    function getContractBalance() external view onlyOwner returns (uint256) {
+        return address(this).balance;
+    }
 }
