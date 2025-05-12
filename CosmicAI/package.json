@@ -1,0 +1,59 @@
+{
+  "name": "cosmicai",
+  "version": "1.0.0",
+  "description": "CosmicAI: An advanced AI project leveraging blockchain technology for astronomical data analysis.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/**/*.test.js",
+    "lint": "eslint .",
+    "build": "webpack --config webpack.config.js",
+    "start": "node index.js",
+    "deploy": "node scripts/deploy.js",
+    "integration-test": "mocha test/integration.test.js",
+    "prettify": "prettier --write '**/*.js'",
+    "serve": "nodemon index.js"
+  },
+  "keywords": [
+    "AI",
+    "machine-learning",
+    "blockchain",
+    "web3",
+    "data-science",
+    "astronomy"
+  ],
+  "author": "KOSASIH",
+  "license": "MIT",
+  "dependencies": {
+    "web3": "^1.6.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.9",
+    "cors": "^2.8.5",
+    "body-parser": "^1.19.0",
+    "jsonwebtoken": "^8.5.1",
+    "axios": "^0.21.1",
+    "tensorflow": "^2.6.0",
+    "ipfs-http-client": "^56.0.0"  // For interacting with IPFS
+  },
+  "devDependencies": {
+    "mocha": "^9.1.3",
+    "chai": "^4.3.4",
+    "eslint": "^7.32.0",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1",
+    "prettier": "^2.5.1",
+    "nodemon": "^2.0.12"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GALACTIC-ASTROPHYSICS-INSTITUTE/GAILab.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GALACTIC-ASTROPHYSICS-INSTITUTE/GAILab/issues"
+  },
+  "homepage": "https://github.com/GALACTIC-ASTROPHYSICS-INSTITUTE/GAILab#readme"
+}
